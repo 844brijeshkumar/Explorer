@@ -8,19 +8,23 @@ const listingSchema = new Schema({
     },
     description: {
         type: String,
+        required: true,
     },
     image: {
         type: String,
     },
     price: {
         type: Number,
+        required: true,
         min: 0,
     },
     location: {
         type: String,
+        required: true,
     },
     country: {
         type: String,
+        required: true,
     },
 });
 
