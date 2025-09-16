@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -15,6 +19,8 @@ const flash = require("connect-flash");
 const passport= require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+
+
 
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/Explorer";
@@ -105,5 +111,5 @@ app.use((err,req,res,next)=>{
 
 //Starting Server
 app.listen(4444, () => {
-  console.log("server is listening to port 8080");
+  console.log("server is listening to port 4444");
 });

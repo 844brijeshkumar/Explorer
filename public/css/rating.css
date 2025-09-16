@@ -1,0 +1,33 @@
+
+.star-rating {
+    flex-direction: row-reverse;
+    /* justify-content: flex-start; /* Aligns stars to the left */
+}
+
+/* Hide the actual radio buttons */
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+/* Style the star labels */
+.star-rating label {
+    font-size: 2rem; /* Size of the stars */
+    color: #ccc;      /* Default color for an empty star */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* --- The Magic --- */
+
+/* Change color of stars on hover */
+/* Selects the hovered star AND all the stars that come after it */
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107; /* Gold color for hover */
+}
+
+/* Keep stars colored when a radio button is checked */
+/* Selects all stars that come after a checked radio button */
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffc107; /* Gold color for selected */
+}
