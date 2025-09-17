@@ -1,6 +1,79 @@
 <% layout("/layout/boilerplate") %> 
 <body>
-  <h3>All Listings</h3>
+
+  <div class="filters-bar offset-1">
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-house"></i></div>
+      <p>Tiny homes</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Iconic cities</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-brands fa-fort-awesome"></i></div>
+      <p>Castles</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Pools</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-campground"></i></div>
+      <p>Camping</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-tractor"></i></div>
+      <p>Farms</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-regular fa-snowflake"></i></div>
+      <p>Arctic</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-mountain-sun"></i></div>
+      <p>Mountains</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-umbrella-beach"></i></div>
+      <p>Beach</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-water"></i></div>
+      <p>Fountains</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-mug-saucer"></i></div>
+      <p>Cafes</p>
+    </div>
+
+    <div class="filter mt-3">
+      <div><i class="fa-solid fa-house-chimney-window"></i></div>
+      <p>Villas</p>
+    </div>
+  </div>
+
+  <hr>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for(let listing of allListings) { %>
     <a href="/listings/<%= listing._id %>" class="listing-link">

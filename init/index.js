@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
-const { init } = require("../models/review.js");
+const path = require('path');
+require("dotenv").config({ path: path.resolve(__dirname, '../.env') });
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/Explorer";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/Explorer";
+const atlasURL = process.env.ATLAS_DB_URL;
 
 main()
   .then(() => {
@@ -14,7 +16,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(atlasURL);
 }
 
 const initDB = async () => {

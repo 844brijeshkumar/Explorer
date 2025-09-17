@@ -21,9 +21,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 
-
-
-const MONGO_URL = "mongodb://127.0.0.1:27017/Explorer";
+const atlasURL = process.env.ATLAS_DB_URL;
 
 main()
   .then(() => {
@@ -33,7 +31,7 @@ main()
     console.log(err);
   });
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(atlasURL);
 }
 
 app.set("view engine", "ejs");
@@ -45,7 +43,7 @@ app.use(express.static(path.join(__dirname,"public")));
 
 
 const sessionOption = {
-  secret: "mysupersecretcode",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie:{
@@ -55,10 +53,7 @@ const sessionOption = {
   },
 };
 
-//root Route
-app.get("/", (req, res) => {
-  res.send("Hi, I am root");
-});
+
 
 //using session ad flash
 app.use(session(sessionOption));
@@ -67,8 +62,10 @@ app.use(flash());
 //use for initializing and session
 app.use(passport.initialize());
 app.use(passport.session());
+
 // use static authenticate method of model in LocalStrategy
 passport.use(new LocalStrategy(User.authenticate()));
+
 // use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -81,21 +78,11 @@ app.use((req,res,next)=>{
   next();
 });
 
-//demo user
-app.get("/demouser",async(req,res)=>{
-  let fakeuser= new User({
-    email:"student@gmail.com",
-    username:"brijesh@134"
-  });
-  let newuser=await User.register(fakeuser,"helloworld");
-  res.send(newuser);
-})
 
 //Routes
 app.use("/listings",listingRoute);
 app.use("/listings/:id/reviews",reviewRoute);
 app.use("/",userRoute);
-
 
 
 // All routes Expect created routes
