@@ -7,7 +7,9 @@
     <div class="card col-6 offset-3 show-card">
       <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing image">
       <div class="card-body">
+      <% if (listing.owner) { %>
         <p class="card-text"> <i><%= listing.owner.username %></i> </p>
+      <% } %>
         <p class="card-text"> <%= listing.description %> </p>
         <p class="card-text"> 
           <% if (listing.price !== null) { %>
@@ -19,7 +21,7 @@
         
       </div>
       
-      <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
+      <% if(currUser && listing.owner && listing.owner._id.equals(currUser._id)){ %>
       <div class="btns">
         <form method="GET" action="/listings/<%= listing._id %>/edit">
           <button class="btn btn-link offset-3">Edit</button>
